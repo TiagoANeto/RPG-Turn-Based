@@ -10,13 +10,14 @@ public class Player : MonoBehaviour, IMovement
     private Vector2 input;
     private Vector3 movement;
     private Vector3 rotate;
+    private Animator animator;
     public CharacterController cc { get; set;}
     public InputRef inputRef;
 
     private void Awake()
     {
         cc = GetComponent<CharacterController>();
-
+        animator = GetComponent<Animator>();
         inputRef.MoveEvent += Move;
     }
 
@@ -29,6 +30,15 @@ public class Player : MonoBehaviour, IMovement
     private void Movement()
     {
         cc.Move(movement * movSpeed * Time.deltaTime); 
+
+        if(movement.magnitude > 0.1f)
+        {
+            animator.SetBool("isRunning", true);
+        }
+        else
+        {
+            animator.SetBool("isRunning", false);
+        }
     }
 
     private void Move(Vector2 movDir)
