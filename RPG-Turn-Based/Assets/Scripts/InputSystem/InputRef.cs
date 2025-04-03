@@ -8,6 +8,7 @@ using UnityEngine;
 public class InputRef : ScriptableObject, Inputs.IPlayerActions //Interfaces dos Action Maps
 {
     private Inputs inputs; //Referencia da classe C# inputsystem
+    [HideInInspector] public bool isPressed;
 
     //Iniciando a classe das inputs e passando as intancias de cada Action Map
     public void OnEnable()
@@ -43,7 +44,9 @@ public class InputRef : ScriptableObject, Inputs.IPlayerActions //Interfaces dos
     }
 
     public void OnJump(UnityEngine.InputSystem.InputAction.CallbackContext context)
-    {        
+    {   
+        isPressed = context.ReadValueAsButton();
+
         if (context.started)
         {
             JumpEvent?.Invoke();

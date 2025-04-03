@@ -15,9 +15,8 @@ MonoBehaviour:
   health: 0
   movSpeed: 10
   rotationSpeed: 7
-  gravity: -9.81
-  gravityMultiplier: 0
-  verticalVelocity: 0
-  jumpForce: 5
-  jumpTime: 0
-  isJumping: 0
+  gravity: -8
+  groundedGravity: -0.05
+  jumpHeigth: 1
+  initialJumpVelocity: 4
+  isJumping: 1

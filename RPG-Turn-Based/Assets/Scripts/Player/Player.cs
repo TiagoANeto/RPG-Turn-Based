@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     {
         cc = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+        data.SetupAuxJump();
 
         //Atribução de eventos de input as ações do player
         inputRef.MoveEvent += Move;
@@ -67,16 +68,32 @@ public class Player : MonoBehaviour
 
     private void Gravity()
     {   
-        movement.y += data.gravity * Time.deltaTime;
-        cc.Move(movement * Time.deltaTime);
+        if(cc.isGrounded)
+        {
+            input.y = data.groundedGravity;
+        }
+        else
+        {
+            float previousYvelocity = input.y;
+            float newYvelocity = input.y + (data.gravity * Time.deltaTime);
+            float nextYvelocity = (previousYvelocity + newYvelocity) * .5f;
+            input.y = nextYvelocity;
+
+        }
     }
 
     private void Jump()
     {
-        if(cc.isGrounded && !data.isJumping)
+        if(cc.isGrounded && !data.isJumping && inputRef.isPressed)
         {
             data.isJumping = true;
-            movement.y += data.jumpForce;
+            input.y = data.initialJumpVelocity * 5f;
+            animator.SetBool("isJumping", true);
+        }
+        else if(!inputRef.isPressed && cc.isGrounded && data.isJumping)
+        {
+            data.isJumping = false;
+            animator.SetBool("isJumping", false);
         }
     }    
 }
