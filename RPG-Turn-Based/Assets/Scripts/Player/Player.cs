@@ -1,23 +1,30 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(CharacterController))]
+/// <summary>
+/// Componentes necessários para o uso do player e acesso a seus valores, variaveis e inputs
+/// </summary>
+[RequireComponent(typeof(CharacterController))] [RequireComponent(typeof(PlayerData))] [RequireComponent(typeof(InputRef))]
 public class Player : MonoBehaviour
-{
-    [Header("Valores do Player")] [Space(10)]
-    public float movSpeed = 10;
-    public float rotationSpeed;
+{   
+    #region Declarações
     private Vector2 input;
     private Vector3 movement;
     private Animator animator;
-    public CharacterController cc;
+    private CharacterController cc;
+
+    [Header("Referências de Componente")]
     public InputRef inputRef;
     public PlayerData data;
+
+    #endregion
 
     private void Awake()
     {
         cc = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+
+        //Atribução de eventos de input as ações do player
         inputRef.MoveEvent += Move;
         inputRef.JumpEvent += Jump;
     }
@@ -31,7 +38,7 @@ public class Player : MonoBehaviour
 
     private void Movement()
     {
-        cc.Move(movement * movSpeed * Time.deltaTime); 
+        cc.Move(movement * data.movSpeed * Time.deltaTime); 
 
         if(movement.magnitude > 0.1f)
         {
@@ -54,31 +61,22 @@ public class Player : MonoBehaviour
         if(movement.magnitude > 0.1f)
         {
             Quaternion targetRotation = Quaternion.LookRotation(movement.normalized);
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, data.rotationSpeed * Time.deltaTime);
         }
     }
 
     private void Gravity()
-    {
-        cc.Move(data.fallVelocity * Vector3.up);
-
-        if(cc.isGrounded && data.fallVelocity < 0.0f)
-        {
-            data.fallVelocity = 0.0f;
-            
-        }
-        else
-        {
-            data.fallVelocity += data.gravity * data.gravityMutiplier * Time.deltaTime;
-        }
+    {   
+        movement.y += data.gravity * Time.deltaTime;
+        cc.Move(movement * Time.deltaTime);
     }
 
     private void Jump()
     {
-        if(cc.isGrounded && !data.jumping)
+        if(cc.isGrounded && !data.isJumping)
         {
-            data.jumpHeigth = new Vector3(0f, data.jumpForce, 0f);
-            cc.Move(data.jumpHeigth * data.jumpForce * Time.deltaTime);
+            data.isJumping = true;
+            movement.y += data.jumpForce;
         }
-    }
+    }    
 }

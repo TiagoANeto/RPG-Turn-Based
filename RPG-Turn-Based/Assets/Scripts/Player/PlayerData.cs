@@ -10,20 +10,21 @@ public class PlayerData : ScriptableObject
 {
     [Header("PlayerStats")] [Space(10)]
     public float health;
+    public float movSpeed = 10;
+    public float rotationSpeed;
 
-   //variaveis de calculo auxiliar 
-    [Header("Gravity")]
-    public float gravityMutiplier;
-    public float gravity;
-    public float fallVelocity;
+    //variaveis de calculo auxiliar 
+    [Header("Gravity")] [Space(10)]
+    public float gravity = -9.81f;
+    public float gravityMultiplier;
+    public float verticalVelocity;
 
     [Space(20)]
 
     //variaveis de calculo auxilar do jump
-    [Header("Jump")]
-    public Vector3 jumpHeigth;
-    public float jumpTime;
+    [Header("Jump")] [Space(10)]
     public float jumpForce;
-    public bool jumping;
+    public float jumpTime;
+    public bool isJumping;
    
 }

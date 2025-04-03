@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Player Data
   m_EditorClassIdentifier: 
   health: 0
-  gravityMutiplier: 0
-  gravity: 0
-  fallVelocity: 0
-  jumpHeigth: {x: 0, y: 10, z: 0}
+  movSpeed: 10
+  rotationSpeed: 7
+  gravity: -9.81
+  gravityMultiplier: 0
+  verticalVelocity: 0
+  jumpForce: 5
   jumpTime: 0
-  jumpForce: 10
-  jumping: 0
+  isJumping: 0

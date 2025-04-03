@@ -495,9 +495,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b8439ab1b8552a45b2786433b4fdb10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movSpeed: 10
-  rotationSpeed: 7
-  cc: {fileID: 0}
   inputRef: {fileID: 11400000, guid: 3490e4281d0445947916af573b0babad, type: 2}
   data: {fileID: 11400000, guid: 91255fcdbe5eddf41a6e3b426e210548, type: 2}
 --- !u!143 &337582866
@@ -521,10 +518,10 @@ CharacterController:
   m_Height: 1.8
   m_Radius: 0.5
   m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
+  m_StepOffset: 0.1
+  m_SkinWidth: 0.01
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.86, z: 0}
+  m_Center: {x: 0, y: 0.8, z: 0}
 --- !u!1 &409468934
 GameObject:
   m_ObjectHideFlags: 0

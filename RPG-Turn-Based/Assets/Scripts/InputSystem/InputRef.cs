@@ -43,8 +43,8 @@ public class InputRef : ScriptableObject, Inputs.IPlayerActions //Interfaces dos
     }
 
     public void OnJump(UnityEngine.InputSystem.InputAction.CallbackContext context)
-    {
-        if(context.started)
+    {        
+        if (context.started)
         {
             JumpEvent?.Invoke();
         }
