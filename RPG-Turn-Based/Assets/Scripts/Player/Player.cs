@@ -23,11 +23,9 @@ public class Player : MonoBehaviour
     {
         cc = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
-        data.SetupAuxJump();
 
         //Atribução de eventos de input as ações do player
         inputRef.MoveEvent += Move;
-        inputRef.JumpEvent += Jump;
     }
 
     private void Update()
@@ -81,19 +79,4 @@ public class Player : MonoBehaviour
 
         }
     }
-
-    private void Jump()
-    {
-        if(cc.isGrounded && !data.isJumping && inputRef.isPressed)
-        {
-            data.isJumping = true;
-            input.y = data.initialJumpVelocity * 5f;
-            animator.SetBool("isJumping", true);
-        }
-        else if(!inputRef.isPressed && cc.isGrounded && data.isJumping)
-        {
-            data.isJumping = false;
-            animator.SetBool("isJumping", false);
-        }
-    }    
 }

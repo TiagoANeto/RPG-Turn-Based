@@ -36,21 +36,24 @@ public class InputRef : ScriptableObject, Inputs.IPlayerActions //Interfaces dos
 
     //Declaração dos Eventos que seram feitas as atribuições das inputs
     public event Action<Vector2> MoveEvent;
-    public event Action JumpEvent;
+    public event Action PickUpItemEvent;
 
     public void OnMove(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
         MoveEvent?.Invoke(context.ReadValue<Vector2>());
     }
 
+    public void OnMouse(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        if(context.performed)
+        {
+            PickUpItemEvent?.Invoke();
+        }
+    }
+
     public void OnJump(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {   
-        isPressed = context.ReadValueAsButton();
-
-        if (context.started)
-        {
-            JumpEvent?.Invoke();
-        }
+        
     }
 
     public void OnLook(UnityEngine.InputSystem.InputAction.CallbackContext context)
@@ -60,7 +63,7 @@ public class InputRef : ScriptableObject, Inputs.IPlayerActions //Interfaces dos
 
     public void OnAttack(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        
+       
     }
 
     public void OnInteract(UnityEngine.InputSystem.InputAction.CallbackContext context)
