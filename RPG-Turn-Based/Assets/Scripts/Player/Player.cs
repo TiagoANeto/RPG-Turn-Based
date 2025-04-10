@@ -1,10 +1,11 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.TextCore.Text;
 
 /// <summary>
 /// Componentes necessários para o uso do player e acesso a seus valores, variaveis e inputs
 /// </summary>
-[RequireComponent(typeof(CharacterController))] [RequireComponent(typeof(PlayerData))] [RequireComponent(typeof(InputRef))]
+[RequireComponent(typeof(CharacterController))] [RequireComponent(typeof(Character))] [RequireComponent(typeof(InputRef))]
 public class Player : MonoBehaviour
 {   
     #region Declarações
@@ -13,9 +14,18 @@ public class Player : MonoBehaviour
     private Animator animator;
     private CharacterController cc;
 
+    [Header("PlayerMovementStats")] [Space(10)]
+    public float movSpeed = 10;
+    public float rotationSpeed;
+
+    //variaveis de calculo auxiliares de gravidade
+    [Header("Gravity")] [Space(10)]
+    public float gravity = -9.81f;
+    public float groundedGravity = -.05f;
+
     [Header("Referências de Componente")]
     public InputRef inputRef;
-    public PlayerData data;
+    public CharacterStats playerStats;
 
     #endregion
 
@@ -37,7 +47,7 @@ public class Player : MonoBehaviour
 
     private void Movement()
     {
-        cc.Move(movement * data.movSpeed * Time.deltaTime); 
+        cc.Move(movement * movSpeed * Time.deltaTime); 
 
         if(movement.magnitude > 0.1f)
         {
@@ -60,7 +70,7 @@ public class Player : MonoBehaviour
         if(movement.magnitude > 0.1f)
         {
             Quaternion targetRotation = Quaternion.LookRotation(movement.normalized);
-            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, data.rotationSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
         }
     }
 
@@ -68,12 +78,12 @@ public class Player : MonoBehaviour
     {   
         if(cc.isGrounded)
         {
-            input.y = data.groundedGravity;
+            input.y = groundedGravity;
         }
         else
         {
             float previousYvelocity = input.y;
-            float newYvelocity = input.y + (data.gravity * Time.deltaTime);
+            float newYvelocity = input.y + (gravity * Time.deltaTime);
             float nextYvelocity = (previousYvelocity + newYvelocity) * .5f;
             input.y = nextYvelocity;
 
