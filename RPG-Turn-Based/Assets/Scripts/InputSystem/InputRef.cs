@@ -36,7 +36,8 @@ public class InputRef : ScriptableObject, Inputs.IPlayerActions //Interfaces dos
 
     //Declaração dos Eventos que seram feitas as atribuições das inputs
     public event Action<Vector2> MoveEvent;
-    public event Action PickUpItemEvent;
+    public event Action InteractEvent;
+    public event Action<RaycastHit> MouseClickEvent;
 
     public void OnMove(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
@@ -45,9 +46,22 @@ public class InputRef : ScriptableObject, Inputs.IPlayerActions //Interfaces dos
 
     public void OnMouse(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        if(context.performed)
+        // Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        // RaycastHit hit;
+
+        // if(Physics.Raycast(ray, out hit, Mathf.Infinity) && context.performed)
+        // {
+        //     MouseClickEvent?.Invoke(hit);
+        // }
+    }
+
+    public void OnInteract(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+    
+        if(context.started)
         {
-            PickUpItemEvent?.Invoke();
+            Debug.Log("Tecla E foi pressionada");
+            InteractEvent?.Invoke();
         }
     }
 
@@ -66,10 +80,6 @@ public class InputRef : ScriptableObject, Inputs.IPlayerActions //Interfaces dos
        
     }
 
-    public void OnInteract(UnityEngine.InputSystem.InputAction.CallbackContext context)
-    {
-        
-    }
 
     public void OnCrouch(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {

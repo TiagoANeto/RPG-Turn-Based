@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.TextCore.Text;
@@ -13,6 +14,9 @@ public class Player : MonoBehaviour
     private Vector3 movement;
     private Animator animator;
     private CharacterController cc;
+    private bool _canInteract = false;
+    private IInteractable interactable = null;
+    
 
     [Header("PlayerMovementStats")] [Space(10)]
     public float movSpeed = 10;
@@ -43,6 +47,14 @@ public class Player : MonoBehaviour
         Movement();
         Rotation();
         Gravity();
+
+        if(Keyboard.current.eKey.wasPressedThisFrame && _canInteract && interactable != null)
+        {
+            interactable.Interact();
+            interactable = null;
+            _canInteract = false;
+        } 
+            
     }
 
     private void Movement()
@@ -88,5 +100,19 @@ public class Player : MonoBehaviour
             input.y = nextYvelocity;
 
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Entrou na area de interacao");
+        interactable = other.GetComponent<IInteractable>();
+        _canInteract = true;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        Debug.Log("Saiu da area de interacao");
+        _canInteract = false;
+        interactable = null;
     }
 }

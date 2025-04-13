@@ -1412,7 +1412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movSpeed: 10
-  rotationSpeed: 0
+  rotationSpeed: 7
   gravity: -9.81
   groundedGravity: -0.05
   inputRef: {fileID: 11400000, guid: 3490e4281d0445947916af573b0babad, type: 2}
@@ -5813,7 +5813,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1595196661732303121, guid: 870c6c1e6305d9e4b835a2763686cb8a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.553
+      value: -6.65
       objectReference: {fileID: 0}
     - target: {fileID: 1595196661732303121, guid: 870c6c1e6305d9e4b835a2763686cb8a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5855,6 +5855,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: ManaPotion
       objectReference: {fileID: 0}
+    - target: {fileID: 7293183385689077744, guid: 870c6c1e6305d9e4b835a2763686cb8a, type: 3}
+      propertyPath: m_Radius
+      value: 2.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7293183385689077744, guid: 870c6c1e6305d9e4b835a2763686cb8a, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8802885822572561668, guid: 870c6c1e6305d9e4b835a2763686cb8a, type: 3}
+      propertyPath: inputRef
+      value: 
+      objectReference: {fileID: 11400000, guid: 3490e4281d0445947916af573b0babad, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5870,7 +5882,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1128589320257655541, guid: e966b9051a49bf54587dbdcbb8b2553c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.398
+      value: 6.9
       objectReference: {fileID: 0}
     - target: {fileID: 1128589320257655541, guid: e966b9051a49bf54587dbdcbb8b2553c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5907,6 +5919,18 @@ PrefabInstance:
     - target: {fileID: 1128589320257655541, guid: e966b9051a49bf54587dbdcbb8b2553c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2140516408100294283, guid: e966b9051a49bf54587dbdcbb8b2553c, type: 3}
+      propertyPath: inputRef
+      value: 
+      objectReference: {fileID: 11400000, guid: 3490e4281d0445947916af573b0babad, type: 2}
+    - target: {fileID: 2789601522993726236, guid: e966b9051a49bf54587dbdcbb8b2553c, type: 3}
+      propertyPath: m_Radius
+      value: 2.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2789601522993726236, guid: e966b9051a49bf54587dbdcbb8b2553c, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4534377831137120262, guid: e966b9051a49bf54587dbdcbb8b2553c, type: 3}
       propertyPath: m_Name
