@@ -38,6 +38,7 @@ public class InputRef : ScriptableObject, Inputs.IPlayerActions //Interfaces dos
     public event Action<Vector2> MoveEvent;
     public event Action InteractEvent;
     public event Action<RaycastHit> MouseClickEvent;
+    public event Action OpenMenuInGameEvent;
 
     public void OnMove(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
@@ -62,6 +63,14 @@ public class InputRef : ScriptableObject, Inputs.IPlayerActions //Interfaces dos
         {
             Debug.Log("Tecla E foi pressionada");
             InteractEvent?.Invoke();
+        }
+    }
+
+    public void OnMenuInGame(InputAction.CallbackContext context)
+    {
+        if(context.started)
+        {
+            OpenMenuInGameEvent?.Invoke();
         }
     }
 

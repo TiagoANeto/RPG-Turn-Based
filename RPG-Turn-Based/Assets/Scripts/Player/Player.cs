@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
     [Header("Referências de Componente")]
     public InputRef inputRef;
     public CharacterStats playerStats;
+    public GameObject panelMenuInGame;
 
     #endregion
 
@@ -40,6 +41,7 @@ public class Player : MonoBehaviour
 
         //Atribução de eventos de input as ações do player
         inputRef.MoveEvent += Move;
+        inputRef.OpenMenuInGameEvent += MenuInGame;
     }
 
     private void Update()
@@ -103,6 +105,11 @@ public class Player : MonoBehaviour
             interactable = null;
             _canInteract = false;
         }
+    }
+
+    private void MenuInGame()
+    {
+        panelMenuInGame.SetActive(!panelMenuInGame.activeInHierarchy);
     }
 
     private void OnTriggerEnter(Collider other)

@@ -13,6 +13,7 @@ public class ItemManager : MonoBehaviour, IInteractable
     {
         Debug.Log("Interagiu com o item");
         InventoryManager.inventoryManager.Add(item);
+        InventoryManager.inventoryManager.ListItems();
         Destroy(gameObject);
     }
 }
