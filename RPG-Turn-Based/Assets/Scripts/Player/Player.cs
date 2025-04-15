@@ -47,14 +47,7 @@ public class Player : MonoBehaviour
         Movement();
         Rotation();
         Gravity();
-
-        if(Keyboard.current.eKey.wasPressedThisFrame && _canInteract && interactable != null)
-        {
-            interactable.Interact();
-            interactable = null;
-            _canInteract = false;
-        } 
-            
+        Interaction();
     }
 
     private void Movement()
@@ -99,6 +92,16 @@ public class Player : MonoBehaviour
             float nextYvelocity = (previousYvelocity + newYvelocity) * .5f;
             input.y = nextYvelocity;
 
+        }
+    }
+
+    private void Interaction()
+    {
+        if(Keyboard.current.eKey.wasPressedThisFrame && _canInteract && interactable != null)
+        {
+            interactable.Interact();
+            interactable = null;
+            _canInteract = false;
         }
     }
 

@@ -3,12 +3,6 @@ using UnityEngine;
 public class ItemManager : MonoBehaviour, IInteractable
 {
     public Item item;
-    public InputRef inputRef;
-
-    private void Awake()
-    {
-        inputRef.InteractEvent += CollectItem;
-    }
 
     public void Interact()
     {
