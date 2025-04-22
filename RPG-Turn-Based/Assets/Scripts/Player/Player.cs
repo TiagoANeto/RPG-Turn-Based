@@ -1,12 +1,11 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.TextCore.Text;
+using UnityEngine.UI;
 
 /// <summary>
 /// Componentes necessários para o uso do player e acesso a seus valores, variaveis e inputs
 /// </summary>
-[RequireComponent(typeof(CharacterController))] [RequireComponent(typeof(Character))] [RequireComponent(typeof(InputRef))]
+[RequireComponent(typeof(CharacterController))] [RequireComponent(typeof(CharacterStats))] [RequireComponent(typeof(InputRef))]
 public class Player : MonoBehaviour
 {   
     #region Declarações
@@ -50,8 +49,11 @@ public class Player : MonoBehaviour
         Rotation();
         Gravity();
         Interaction();
+
+        HUDManager.hudManager.playerName.text = playerStats.characterName; //ta aqui por enquanto pra fins de testes
     }
 
+    #region Métodos de Movimentação do Player
     private void Movement()
     {
         cc.Move(movement * movSpeed * Time.deltaTime); 
@@ -96,7 +98,9 @@ public class Player : MonoBehaviour
 
         }
     }
+    #endregion
 
+    #region Métodos de Interação do Player
     private void Interaction()
     {
         if(Keyboard.current.eKey.wasPressedThisFrame && _canInteract && interactable != null)
@@ -105,11 +109,6 @@ public class Player : MonoBehaviour
             interactable = null;
             _canInteract = false;
         }
-    }
-
-    private void MenuInGame()
-    {
-        panelMenuInGame.SetActive(!panelMenuInGame.activeInHierarchy);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -125,4 +124,23 @@ public class Player : MonoBehaviour
         _canInteract = false;
         interactable = null;
     }
+    #endregion
+    
+    public void IncreaseHP(int value)
+    {
+        playerStats.hp += value;
+        HUDManager.hudManager.playerHpBar.value = playerStats.hp;
+    }
+
+    public void IncreaseMana(int value)
+    {
+        playerStats.mana += value;
+        HUDManager.hudManager.playerHpBar.value = playerStats.mana;
+    }
+
+    private void MenuInGame()
+    {
+        panelMenuInGame.SetActive(!panelMenuInGame.activeInHierarchy);
+    }
+
 }

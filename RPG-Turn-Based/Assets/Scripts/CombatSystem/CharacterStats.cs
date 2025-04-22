@@ -8,6 +8,7 @@ using UnityEngine;
 public class CharacterStats : ScriptableObject
 {
     public int hp;
+    public int mana;
     public string characterName;
     public int damage;
     public int level;

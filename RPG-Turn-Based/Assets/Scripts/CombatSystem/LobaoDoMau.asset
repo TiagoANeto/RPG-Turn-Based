@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35da586fa04879949be34a6aeda77c44, type: 3}
   m_Name: LobaoDoMau
   m_EditorClassIdentifier: 
-  hp: 10
+  hp: 399
+  mana: 79
   characterName: "Lob\xE3o do Mau"
   damage: 7
   level: 7
