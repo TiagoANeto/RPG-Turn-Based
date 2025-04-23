@@ -2,13 +2,17 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-   public static GameManager instance;
+   public static GameManager gameManager;
+   public GameObject panelMenuInGame;
+   public InputRef inputRef;
 
    private void Awake()
    {
-        if(instance == null)
+        inputRef.OpenMenuInGameEvent += MenuInGame;
+
+        if(gameManager == null)
         {
-            instance = this;
+            gameManager = this;
         }
         else
         {
@@ -17,4 +21,9 @@ public class GameManager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
    }
+
+    private void MenuInGame()
+    {
+        panelMenuInGame.SetActive(!panelMenuInGame.activeInHierarchy);
+    }
 }

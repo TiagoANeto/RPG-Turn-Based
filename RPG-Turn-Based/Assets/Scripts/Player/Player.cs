@@ -5,7 +5,7 @@ using UnityEngine.UI;
 /// <summary>
 /// Componentes necessários para o uso do player e acesso a seus valores, variaveis e inputs
 /// </summary>
-[RequireComponent(typeof(CharacterController))] [RequireComponent(typeof(CharacterStats))] [RequireComponent(typeof(InputRef))]
+[RequireComponent(typeof(CharacterController))] [RequireComponent(typeof(InputRef))]
 public class Player : MonoBehaviour
 {   
     #region Declarações
@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
 
     [Header("PlayerMovementStats")] [Space(10)]
     public float movSpeed = 10;
-    public float rotationSpeed;
+    public float rotationSpeed = 7;
 
     //variaveis de calculo auxiliares de gravidade
     [Header("Gravity")] [Space(10)]
@@ -29,7 +29,6 @@ public class Player : MonoBehaviour
     [Header("Referências de Componente")]
     public InputRef inputRef;
     public CharacterStats playerStats;
-    public GameObject panelMenuInGame;
 
     #endregion
 
@@ -37,10 +36,10 @@ public class Player : MonoBehaviour
     {
         cc = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+        playerStats = GetComponent<CharacterStats>();
 
         //Atribução de eventos de input as ações do player
         inputRef.MoveEvent += Move;
-        inputRef.OpenMenuInGameEvent += MenuInGame;
     }
 
     private void Update()
@@ -50,7 +49,8 @@ public class Player : MonoBehaviour
         Gravity();
         Interaction();
 
-        HUDManager.hudManager.playerName.text = playerStats.characterName; //ta aqui por enquanto pra fins de testes
+        HUDManager.hudManager.playerName.text = playerStats.characterName;
+
     }
 
     #region Métodos de Movimentação do Player
@@ -125,22 +125,5 @@ public class Player : MonoBehaviour
         interactable = null;
     }
     #endregion
-    
-    public void IncreaseHP(int value)
-    {
-        playerStats.hp += value;
-        HUDManager.hudManager.playerHpBar.value = playerStats.hp;
-    }
-
-    public void IncreaseMana(int value)
-    {
-        playerStats.mana += value;
-        HUDManager.hudManager.playerHpBar.value = playerStats.mana;
-    }
-
-    private void MenuInGame()
-    {
-        panelMenuInGame.SetActive(!panelMenuInGame.activeInHierarchy);
-    }
 
 }
