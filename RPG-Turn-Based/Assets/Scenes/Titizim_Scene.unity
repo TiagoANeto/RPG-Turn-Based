@@ -1972,7 +1972,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c04aaae42d002349bf816d5a1636a8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStats: {fileID: 0}
 --- !u!114 &337582868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3890,6 +3889,8 @@ MonoBehaviour:
   playerName: {fileID: 1834903483}
   playerHpBar: {fileID: 1354394402}
   playerManaBar: {fileID: 794771938}
+  enemyName: {fileID: 0}
+  enemyHpBar: {fileID: 0}
 --- !u!4 &856470498
 Transform:
   m_ObjectHideFlags: 0
