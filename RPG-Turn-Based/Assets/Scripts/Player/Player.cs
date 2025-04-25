@@ -48,9 +48,6 @@ public class Player : MonoBehaviour
         Rotation();
         Gravity();
         Interaction();
-
-        HUDManager.hudManager.playerName.text = playerStats.characterName;
-
     }
 
     #region Métodos de Movimentação do Player
