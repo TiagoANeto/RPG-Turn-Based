@@ -28,7 +28,6 @@ public class Player : MonoBehaviour
 
     [Header("Referências de Componente")]
     public InputRef inputRef;
-    public CharacterStats playerStats;
 
     #endregion
 
@@ -36,7 +35,6 @@ public class Player : MonoBehaviour
     {
         cc = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
-        playerStats = GetComponent<CharacterStats>();
 
         //Atribução de eventos de input as ações do player
         inputRef.MoveEvent += Move;

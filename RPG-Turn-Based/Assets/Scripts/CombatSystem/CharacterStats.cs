@@ -12,5 +12,4 @@ public class CharacterStats : MonoBehaviour
     public string characterName;
     public int damage;
     public int level;
-
 }

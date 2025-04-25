@@ -7,7 +7,7 @@ using UnityEngine.UI;
 /// </summary>
 public class Character : MonoBehaviour
 {
-    protected CharacterStats characterStats;
+    public CharacterStats characterStats;
 
     protected virtual void Awake()
     {
@@ -17,14 +17,11 @@ public class Character : MonoBehaviour
     protected virtual void Start()
     {
         characterStats.hp = characterStats.maxHp;
-        HUDManager.hudManager.playerHpBar.maxValue = characterStats.maxHp;
-        HUDManager.hudManager.playerHpBar.value = characterStats.hp;
     }
 
     protected virtual void TakeDamage(int damageValue)
     {
         characterStats.hp -= damageValue;
-        HUDManager.hudManager?.UpdateHP(characterStats.hp);
         
         if(characterStats.hp <= 0)
         {
@@ -36,13 +33,11 @@ public class Character : MonoBehaviour
     protected virtual void IncreaseHP(int value)
     {
         characterStats.hp += value;
-        HUDManager.hudManager?.UpdateHP(characterStats.hp);
     }
 
     protected virtual void IncreaseMana(int value)
     {
         characterStats.mana += value;
-        HUDManager.hudManager?.UpdateMana(characterStats.mana);
     }
 
     /// <summary>
@@ -51,12 +46,10 @@ public class Character : MonoBehaviour
     public void AddStatsHP()
     {
         characterStats.hp += 5;
-        HUDManager.hudManager?.UpdateHP(characterStats.hp);
     }
 
     public void RemoveStatsHP()
     {
         characterStats.hp -=5;
-        HUDManager.hudManager?.UpdateHP(characterStats.hp);
     }
 }
